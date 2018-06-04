@@ -23,26 +23,13 @@ export default class App extends Component {
 
   constructor(props){
     super(props)    
-    // this.state = {
-    //   isOpened: false,
-    // }
   }
 
   async _onPress(context) {
     let  value = this.props.value,
     index = this.props.index
 
-    // let current = context.items[index]
-    // current.isOpened = true
-    
-    // this.props.isOpened = true
-
     context.cardTapped(index, value)
-  
-    
-    // this.setState({
-    //   isOpened: true
-    // })
 
     if (!this.props.isOpened) {
       TapSound.play();
@@ -50,11 +37,6 @@ export default class App extends Component {
   }
 
   render() {
-  
-
-    // const txtCard = !this.state.isOpened ? ( <Text style={styles.cardText}>?</Text> ) : ( <Text style={styles.cardText}>{this.props.value}</Text> )
-    // const backgroundColor = !this.state.isOpened ? 'yellow' : 'skyblue';
-    // const activeOpacity = !this.state.isOpened ? 0 : 1
 
     const index = this.props.index
     return (
@@ -63,9 +45,9 @@ export default class App extends Component {
           { (context) => {
 
               let current = context.items[index]
-              // console.log(context.items)
+            
               let txtCard = (!current.isOpened) ? ( <Text style={styles.cardText}>?</Text> ) : ( <Text style={styles.cardText}>{this.props.value}</Text> )
-              let backgroundColor = (!current.isOpened) ? 'yellow' : 'skyblue';
+              let backgroundColor = (!current.isOpened) ? '#f1c40f' : '#3498db';
               let activeOpacity = (!current.isOpened) ? 0.5 : 1
               let onPress = (!current.isOpened) ? this._onPress.bind(this,context) : () => {};
 

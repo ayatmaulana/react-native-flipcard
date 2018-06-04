@@ -4,7 +4,9 @@ import {
   StyleSheet,
   Text,
   View,
-  Button
+  Alert,
+  TouchableHighlight,
+  ScrollView
 } from 'react-native';
 import Scor from '../components/scor'
 import Card from '../components/card'
@@ -12,7 +14,8 @@ import { shuffle } from 'lodash'
 import { CorrectSound } from '../utils/sound'
 
 import FlipcardContext from '../context/flipcard'
-// import FlipcardStore from '../stores/flipcard'
+
+import Button from '../components/button'
 
 export default class App extends Component {
 
@@ -73,20 +76,20 @@ export default class App extends Component {
 
             // set state `isEnabled` menjadi false
             // -> agar kartu lain tidak bisa di klik
-            this.setState({
+            await this.setState({
               isEnabled: false
             })
 
             // kasih timeout kartu akan ditutup kembali
-            setTimeout(async () => {
+            await setTimeout(async () => {
               var clone =  this.state.items.slice(0)
               clone[this.state.active[0].key].isOpened = false;
               clone[this.state.active[1].key].isOpened = false;
               await this.state.destroyActive()
-              this.setState({
+              await this.setState({
                 isEnabled: true
               })
-            }, 1)      
+            }, 500)      
           }
 
           // await this.state.destroyActive()
@@ -182,11 +185,18 @@ export default class App extends Component {
         </View>
         
         <View style={{
-          flex: 3,
+          flex: 5,
           flexDirection: 'row',
-          flexWrap: 'wrap'
+          flexWrap: 'wrap',
         }}>
           { cards }
+        </View>
+
+        <View style={{flex: 1, flexDirection: 'row', paddingTop: 10}}>
+           
+          <Button value="Start Game" color="#27ae60" handleClick={() => { Alert.alert("start") }} />
+          <Button value="Reset Game" color="#c0392b" handleClick={() => { Alert.alert("reset") }} />
+        
         </View>
       </View>
     );

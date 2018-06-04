@@ -13,7 +13,7 @@ export default class App extends Component {
     return (
       <View>
         <FlipcardContext.Consumer>
-          { (context) => <Text>Scores : { context.score }</Text> }
+          { (context) => <Text style={styles.txtScore}>Scores : { context.score }</Text> }
         </FlipcardContext.Consumer>
       </View>
     );  
@@ -21,5 +21,8 @@ export default class App extends Component {
 }
 
 const styles = StyleSheet.create({
-  
+  txtScore: {
+    fontSize: 30,
+    marginTop: 10,
+  }
 });
