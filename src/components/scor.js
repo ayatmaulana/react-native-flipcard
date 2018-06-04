@@ -13,7 +13,7 @@ export default class App extends Component {
     return (
       <View>
         <FlipcardContext.Consumer>
-          { (context) => <Text style={styles.txtScore}>Scores : { context.score }</Text> }
+          { (context) => <Text style={styles.txtScore}>Score : { context.score }</Text> }
         </FlipcardContext.Consumer>
       </View>
     );  

@@ -6,6 +6,7 @@ import {
   View
 } from 'react-native';
 import PropTypes from 'prop-types'
+import FlipcardContext from '../context/flipcard'
 
 class Button extends Component {
         static propTypes = {
@@ -17,14 +18,37 @@ class Button extends Component {
         render() {
                 return (
                         <View>
-                                <TouchableHighlight 
-                                        style={[styles.btnWrapper, {backgroundColor: this.props.color}]}
-                                        onPress={this.props.handleClick.bind(this)}        
-                                >
-                                        <Text style={styles.txtStyle} >
-                                                { this.props.value }
-                                        </Text>
-                                </TouchableHighlight>
+                                <FlipcardContext.Consumer>
+                                        {
+                                                context => {
+                                                                let activeOpacity, backgroundColor, onPress
+                                                                
+                                                                if( this.props.value == "Start Game" ) {
+                                                                        activeOpacity = (context.isStarted) ? 1 : 0.5
+                                                                        backgroundColor = (context.isStarted) ? "#2c3e50" : this.props.color
+                                                                        onPress = (context.isStarted) ? () => {} : this.props.handleClick.bind(this)
+                                                                }
+
+                                                                if( this.props.value == "Reset Game" ) {
+                                                                        activeOpacity = (!context.isStarted) ? 1 : 0.5
+                                                                        backgroundColor = (!context.isStarted) ? "#2c3e50" : this.props.color
+                                                                        onPress = (!context.isStarted) ? () => {} : this.props.handleClick.bind(this)
+                                                                }
+
+                                                                return (
+                                                                        <TouchableHighlight 
+                                                                        style={[styles.btnWrapper, {backgroundColor}]}
+                                                                        onPress={onPress}   
+                                                                        activeOpacity={activeOpacity}     
+                                                                        >
+                                                                                <Text style={styles.txtStyle} >
+                                                                                        { this.props.value }
+                                                                                </Text>
+                                                                        </TouchableHighlight>
+                                                                )
+                                                }
+                                        }
+                                </FlipcardContext.Consumer>
                         </View>
                 )
         }

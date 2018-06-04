@@ -8,20 +8,22 @@ import {
   TouchableHighlight,
   ScrollView
 } from 'react-native';
+
 import Scor from '../components/scor'
 import Card from '../components/card'
+import Button from '../components/button'
+
 import { shuffle } from 'lodash'
 import { CorrectSound } from '../utils/sound'
 
 import FlipcardContext from '../context/flipcard'
-
-import Button from '../components/button'
 
 export default class App extends Component {
 
   constructor(props){
     super(props)
     this.state = {
+      isStarted: false,
       isEnabled: true,
       values: [],
       active: [],
@@ -90,13 +92,8 @@ export default class App extends Component {
                 isEnabled: true
               })
             }, 500)      
-          }
-
-          // await this.state.destroyActive()
-          
+          } 
         }
-
-        // console.log(this.state)
       },
       setScore: async () => {
         await this.setState({score: this.state.score + 1})
@@ -110,8 +107,23 @@ export default class App extends Component {
         this.setState({
           active: []
         })
+      },
+      resetGame: () => {
+        this.setState({
+          isStarted: false,
+          score: 0,
+          active: []
+        })
+
+        this._loadValues(0)
+      },
+      startGame: () => {
+        this.setState({
+          isStarted: true
+        })
       }
     }
+  
   }
 
   async componentWillMount() {
@@ -154,17 +166,24 @@ export default class App extends Component {
       }
     })
 
-    // console.log(items)
-
-    // itemsState = {
-    //   isOpen: false,
-    //   isMatched: false,
-    // }
-
-    // let arr = Array(this.state.items.length).fill(itemsState)
     await this.setState({
       items
     })
+  }
+
+  _resetGame(){
+    Alert.alert(
+      "Reset Game !",
+      "Are You Sure ?",
+      [
+        {text: "Cancel", onPress: () => {  }, style: 'cancel'},
+        {text: "Ok", onPress: () => { 
+          this.state.resetGame()
+         }
+        }
+      ],
+      { cancelable: true }
+    )
   }
 
   render() {
@@ -179,23 +198,19 @@ export default class App extends Component {
     ))
 
     const view = (
-      <View style={styles.container}>
+      <View style={styles.gameContainer}>
         <View style={{flex: 1}}>
           <Scor />
         </View>
         
-        <View style={{
-          flex: 5,
-          flexDirection: 'row',
-          flexWrap: 'wrap',
-        }}>
+        <View style={styles.cardsContainer}>
           { cards }
         </View>
 
-        <View style={{flex: 1, flexDirection: 'row', paddingTop: 10}}>
+        <View style={styles.actionButtonContainer}>
            
-          <Button value="Start Game" color="#27ae60" handleClick={() => { Alert.alert("start") }} />
-          <Button value="Reset Game" color="#c0392b" handleClick={() => { Alert.alert("reset") }} />
+          <Button value="Start Game" color="#27ae60" handleClick={() => { this.state.startGame() }} />
+          <Button value="Reset Game" color="#c0392b" handleClick={this._resetGame.bind(this)}/>
         
         </View>
       </View>
@@ -210,11 +225,21 @@ export default class App extends Component {
 }
 
 const styles = StyleSheet.create({
-  container: {
+  gameContainer: {
     flex: 1,
     justifyContent: 'center',
     flexDirection: 'column',
     alignItems: 'center',
     backgroundColor: 'white',
+  },
+  cardsContainer: {
+    flex: 5,
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+  },
+  actionButtonContainer: {
+    flex: 1, 
+    flexDirection: 'row', 
+    paddingTop: 10
   }
 });

@@ -18,7 +18,6 @@ export default class App extends Component {
     index: PropTypes.number,
     value: PropTypes.string,
     isOpened: PropTypes.bool,
-    isMatched:PropTypes.bool,
   }
 
   constructor(props){
@@ -47,9 +46,21 @@ export default class App extends Component {
               let current = context.items[index]
             
               let txtCard = (!current.isOpened) ? ( <Text style={styles.cardText}>?</Text> ) : ( <Text style={styles.cardText}>{this.props.value}</Text> )
-              let backgroundColor = (!current.isOpened) ? '#f1c40f' : '#3498db';
-              let activeOpacity = (!current.isOpened) ? 0.5 : 1
-              let onPress = (!current.isOpened) ? this._onPress.bind(this,context) : () => {};
+
+              console.log(context.isStarted)
+
+              var backgroundColor, activeOpacity, onPress
+              if(context.isStarted == true){
+                backgroundColor = (!current.isOpened) ? '#f1c40f' : '#3498db';
+                activeOpacity = (!current.isOpened) ? 0.5 : 1
+                onPress = (!current.isOpened) ? this._onPress.bind(this,context) : () => {};
+              } else{
+                backgroundColor = "#2c3e50";
+                activeOpacity = 1
+                onPress = () => {}
+              }
+              
+   
 
               return (
                 <TouchableOpacity
