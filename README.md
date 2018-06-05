@@ -49,10 +49,10 @@ if all depedencies is installed, and than run it on android / ios
 
 ```sh
 # for android
-react-native-run-android
+react-native run-android
 
 # for ios
-react-native-run-ios
+react-native run-ios
 
 ```
 
