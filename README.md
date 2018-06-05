@@ -1,3 +1,4 @@
+
 <h1 align="center">React Native FlipCard</h1>
 
 <p align="center">
@@ -14,11 +15,13 @@
 </p>
 
 <p align="center">
-  <a href="#tools">Tools</a> ‚Äö√Ñ¬¢
-  <a href="#how-to-use">How To Run</a> ‚Äö√Ñ¬¢
+  <a href="#tools">Tools</a> 
+  <a href="#how-to-use">How To Run</a> 
 </p>
 
-![Image of Yaktocat](https://im3.ezgif.com/tmp/ezgif-3-395ca4fabc.gif)
+<div align="center">
+  <img src="https://im3.ezgif.com/tmp/ezgif-3-395ca4fabc.gif" />
+</div>
 
 ## :memo: Tools
 make sure the below is already installed
