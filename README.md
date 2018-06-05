@@ -14,8 +14,8 @@
 </p>
 
 <p align="center">
-  <a href="#tools">Tools</a> ‚Ä¢
-  <a href="#how-to-use">How To Run</a> ‚Ä¢
+  <a href="#tools">Tools</a> ‚Äö√Ñ¬¢
+  <a href="#how-to-use">How To Run</a> ‚Äö√Ñ¬¢
 </p>
 
 ![Image of Yaktocat](https://im3.ezgif.com/tmp/ezgif-3-395ca4fabc.gif)
