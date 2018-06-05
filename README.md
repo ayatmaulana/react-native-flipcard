@@ -15,8 +15,8 @@
 </p>
 
 <p align="center">
-  <a href="#tools">Tools</a> 
-  <a href="#how-to-use">How To Run</a> 
+  <a href="#tools">Tools</a> .
+  <a href="#how-to-use">How To Run</a> . 
 </p>
 
 <div align="center">
