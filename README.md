@@ -20,7 +20,7 @@
 </p>
 
 <div align="center">
-  <img src="https://im3.ezgif.com/tmp/ezgif-3-395ca4fabc.gif" />
+  <img src="https://i.imgur.com/UlDOYx5.gifv" />
 </div>
 
 ## :memo: Tools
